@@ -1,16 +1,18 @@
 package com.example.demo.gdp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class GDPs {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer CountryId;
-    private Integer yearId;
+    private Integer GdpId;
+
+    @ManyToOne
+    private Countries country;
+
+    @ManyToOne
+    private Years year;
     private double gdp;
 
 
@@ -18,29 +20,31 @@ public class GDPs {
     }
 
     public GDPs(Integer CountryId, Integer yearId, double gdp) {
-        this.setCountryId(CountryId);
-        this.setYearId(yearId);
+        this.setCountry(country);
+        this.setYear(year);
         this.setGdp(gdp);
     }
 
-    public void setCountryId(Integer countryId) {
-        CountryId = countryId;
-    }
 
-    public void setYearId(Integer yearId) {
-        this.yearId = yearId;
-    }
 
     public void setGdp(double gdp) {
         this.gdp = gdp;
     }
 
-    public Integer getCountryId() {
-        return CountryId;
+    public Countries getCountry() {
+        return country;
     }
 
-    public Integer getYearId() {
-        return yearId;
+    public void setCountry(Countries country) {
+        this.country = country;
+    }
+
+    public Years getYear() {
+        return year;
+    }
+
+    public void setYear(Years year) {
+        this.year = year;
     }
 
     public double getGdp() {
@@ -49,8 +53,8 @@ public class GDPs {
 
     public String toString(){
         return "GDP{" +
-                "CountryId=" + CountryId +
-                ", yearId='" + yearId + "'" +
+                "CountryId=" + country +
+                ", yearId='" + year + "'" +
                 ", gdp='" + gdp + "'" +
                 '}';
     }

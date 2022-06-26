@@ -19,7 +19,5 @@ public class gdpService {
     public List<GDPs> getGDPs(){
         return gdpReository.findAll();
     }
-//    public double getGdp(){
-//        return 0.5;
-//    }
+
 }
