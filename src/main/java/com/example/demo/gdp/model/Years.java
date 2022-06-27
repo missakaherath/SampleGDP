@@ -1,4 +1,4 @@
-package com.example.demo.gdp;
+package com.example.demo.gdp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +12,8 @@ public class Years {
     private int yearId;
     private int year;
 
-    public Years(int yearId, int year) {
-        this.setYearId(yearId);
+    public Years(int year) {
+        //this.setYearId(yearId);
         this.setYear(year);
     }
 

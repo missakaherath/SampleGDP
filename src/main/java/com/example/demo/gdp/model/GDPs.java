@@ -1,4 +1,4 @@
-package com.example.demo.gdp;
+package com.example.demo.gdp.model;
 
 import javax.persistence.*;
 
@@ -19,7 +19,7 @@ public class GDPs {
     public GDPs() {
     }
 
-    public GDPs(Integer CountryId, Integer yearId, double gdp) {
+    public GDPs(Countries country, Years year, double gdp) {
         this.setCountry(country);
         this.setYear(year);
         this.setGdp(gdp);
