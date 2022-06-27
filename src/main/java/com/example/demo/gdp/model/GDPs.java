@@ -9,10 +9,10 @@ public class GDPs {
     private Integer GdpId;
 
     @ManyToOne
-    private Countries country;
+    private Countries countries;
 
     @ManyToOne
-    private Years year;
+    private Years years;
     private double gdp;
 
 
@@ -32,19 +32,19 @@ public class GDPs {
     }
 
     public Countries getCountry() {
-        return country;
+        return countries;
     }
 
     public void setCountry(Countries country) {
-        this.country = country;
+        this.countries = country;
     }
 
     public Years getYear() {
-        return year;
+        return years;
     }
 
     public void setYear(Years year) {
-        this.year = year;
+        this.years = year;
     }
 
     public double getGdp() {
@@ -53,8 +53,8 @@ public class GDPs {
 
     public String toString(){
         return "GDP{" +
-                "CountryId=" + country +
-                ", yearId='" + year + "'" +
+                "CountryId=" + countries +
+                ", yearId='" + years + "'" +
                 ", gdp='" + gdp + "'" +
                 '}';
     }

@@ -8,6 +8,7 @@ import com.example.demo.gdp.model.Years;
 import com.example.demo.gdp.repository.CountriesRepository;
 import com.example.demo.gdp.repository.GDPReository;
 import com.example.demo.gdp.repository.YearsRepository;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/csv")
+//@RequiredArgsConstructor
 public class CSVController {
     @Autowired
     private CountriesRepository countriesRepository;

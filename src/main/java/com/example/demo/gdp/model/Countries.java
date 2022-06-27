@@ -1,7 +1,5 @@
 package com.example.demo.gdp.model;
 
-import org.springframework.core.SpringVersion;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,9 +8,9 @@ public class Countries {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int countryId;
 
-    private String Code;
+    private String code;
 
-    private String Name;
+    private String name;
 
     public Countries(String Code, String Name) {
         //this.setCountryId(countryId);
@@ -25,11 +23,11 @@ public class Countries {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String Name) {
-        this.Name = Name;
+        this.name = Name;
     }
 
     public void setCountryId(int countryId) {
@@ -37,7 +35,7 @@ public class Countries {
     }
 
     public void setCode(String Code) {
-        this.Code = Code;
+        this.code = Code;
     }
 
 
@@ -46,13 +44,13 @@ public class Countries {
     }
 
     public String getCode() {
-        return Code;
+        return code;
     }
 
     public String toString(){
         return "Country{" +
                 "countryId=" + countryId +
-                ", Code='" + Code + "'" +
+                ", Code='" + code + "'" +
                 '}';
     }
 }
