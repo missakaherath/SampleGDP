@@ -73,11 +73,13 @@ public class CSVHelper {
             savedYearsList.forEach(year -> {
                 try{
                     double gdpVal = Double.parseDouble(record.get(String.valueOf(year.getYear())));
+                    GDPs gdpObj = new GDPs(country, year, gdpVal);
+                    gdpVals.add(gdpObj);
                 } catch (NullPointerException | NumberFormatException ignore){}
-            });
+            }
+            );
         }
         return gdpVals;
-
     }
 
 
