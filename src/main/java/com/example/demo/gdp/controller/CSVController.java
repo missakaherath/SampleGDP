@@ -8,6 +8,7 @@ import com.example.demo.gdp.model.Years;
 import com.example.demo.gdp.repository.CountriesRepository;
 import com.example.demo.gdp.repository.GDPReository;
 import com.example.demo.gdp.repository.YearsRepository;
+import com.example.demo.gdp.service.CSVService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -35,33 +36,43 @@ public class CSVController {
     @Autowired
     private GDPReository gdpReository;
 
+    private CSVService csvService;
+    String message = "";
+
+    @Autowired
+    public CSVController(CSVService csvService) {
+        this.csvService = csvService;
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file")MultipartFile file) throws IOException {
-        String message = "";
-        if(CSVHelper.hasCSVFormat(file)){
-            CSVParser csvParser = CSVHelper.readRecords(file.getInputStream());
-            List<CSVRecord> records = csvParser.getRecords();
-            List<String> headers = csvParser.getHeaderNames();
-            csvParser.close();
 
-            List<Countries> countries = CSVHelper.getCountries(records);
-            List<Years> yearsArr = CSVHelper.getYears(headers);
+        return csvService.uploadCSV(file);
 
-            countriesRepository.deleteAll();
-            yearsRepository.deleteAll();
-            gdpReository.deleteAll();
-
-            Iterable<Countries> savedCountriesList = countriesRepository.saveAll(countries);
-            Iterable<Years> savedYearsList = yearsRepository.saveAll(yearsArr);
-
-            List<GDPs> gdpVals = CSVHelper.getGDPs(records, savedCountriesList, savedYearsList);
-            gdpReository.saveAll(gdpVals);
-
-            message = "Uploaded successfully: " + file.getOriginalFilename();
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMessage(message));
-    }
-        else{
-            message = "Upload failed: " + file.getOriginalFilename();
-            return  ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(new ResponseMessage(message));
-        }
+//        if(CSVHelper.hasCSVFormat(file)){
+//            CSVParser csvParser = CSVHelper.readRecords(file.getInputStream());
+//            List<CSVRecord> records = csvParser.getRecords();
+//            List<String> headers = csvParser.getHeaderNames();
+//            csvParser.close();
+//
+//            List<Countries> countries = CSVHelper.getCountries(records);
+//            List<Years> yearsArr = CSVHelper.getYears(headers);
+//
+//            countriesRepository.deleteAll();
+//            yearsRepository.deleteAll();
+//            gdpReository.deleteAll();
+//
+//            Iterable<Countries> savedCountriesList = countriesRepository.saveAll(countries);
+//            Iterable<Years> savedYearsList = yearsRepository.saveAll(yearsArr);
+//
+//            List<GDPs> gdpVals = CSVHelper.getGDPs(records, savedCountriesList, savedYearsList);
+//            gdpReository.saveAll(gdpVals);
+//
+//            message = "Uploaded successfully: " + file.getOriginalFilename();
+//            return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseMessage(message));
+//    }
+//        else{
+//            message = "Upload failed: " + file.getOriginalFilename();
+//            return  ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(new ResponseMessage(message));
+//        }
 }}
