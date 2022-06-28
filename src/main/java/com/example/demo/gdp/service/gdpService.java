@@ -16,11 +16,6 @@ public class gdpService {
 
     private final GDPReository gdpReository;
 
-    //@Autowired
-    //public gdpService(GDPReository gdpReository) {
-    //    this.gdpReository = gdpReository;
-    //}
-
     public List<GDPs> getGDPs(){
         return gdpReository.findAll();
     }

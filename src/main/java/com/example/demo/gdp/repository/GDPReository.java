@@ -10,7 +10,5 @@ import java.util.List;
 @Repository
 public interface GDPReository extends JpaRepository<GDPs, Integer>{
     List<GDPs> findByCountries_CodeAndYears_YearGreaterThanEqualAndYears_YearLessThanEqual(String Code, int year, int year1);
-    //List<GDPs> findByCountry_CodeAndYear_YearGreaterThanEqualAndYear_YearLessThanEqual(String Code, int year, int year1);
-
 
 }
